@@ -228,7 +228,11 @@ int mosquitto_topic_matches_sub(const char *sub, const char *topic, bool *result
 	int spos, tpos;
 	bool multilevel_wildcard = false;
 
-	if(!sub || !topic || !result) return MOSQ_ERR_INVAL;
+	if(!sub || !topic) 
+	{
+		*result = false;
+		return MOSQ_ERR_INVAL;
+	}
 
 	slen = strlen(sub);
 	tlen = strlen(topic);
